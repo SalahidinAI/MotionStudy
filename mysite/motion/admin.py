@@ -1,35 +1,153 @@
 from django.contrib import admin
 from .models import *
+from modeltranslation.admin import TranslationAdmin
 
 
-admin.site.register(Home)
+class GeneralMedia:
+    class Media:
+        js = (
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
+
+
+@admin.register(Home)
+class HomeAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(Info)
+class InfoAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(InfoCard)
+class InfoCardAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(Exam)
+class ExamAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(ExamCard)
+class ExamCardAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(ExamTheme)
+class ExamThemeAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(Video)
+class VideoAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(ClientContact)
+class ClientContactAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(MotionContact)
+class MotionContactAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(About)
+class AboutAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(Team)
+class TeamAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(Person)
+class PersonAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(Study)
+class StudyAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(CountryPage)
+class CountryPageAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(CountryName)
+class CountryNamePageAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(ProgramType)
+class ProgramTypeAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(Speciality)
+class SpecialityAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(Language)
+class LanguageAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(CountryDescriptionCost)
+class CountryDescriptionCostAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(CountryInfo)
+class CountryInfoAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(University)
+class UniversityAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(UniversityInfo)
+class UniversityInfoAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(UniversityEvent)
+class UniversityEventAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(UniversityEventInfo)
+class UniversityEventInfoAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(UniversityCost)
+class UniversityCostAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
+@admin.register(Share)
+class ShareAdmin(TranslationAdmin, GeneralMedia):
+    pass
+
+
 admin.site.register(HomeContact)
-admin.site.register(Info)
-admin.site.register(InfoCard)
-admin.site.register(Exam)
-admin.site.register(ExamCard)
-admin.site.register(ExamTheme)
-admin.site.register(Video)
 admin.site.register(VideoItem)
-admin.site.register(ClientContact)
-admin.site.register(MotionContact)
-admin.site.register(About)
-admin.site.register(Team)
-admin.site.register(Person)
-admin.site.register(Study)
-admin.site.register(CountryPage)
-admin.site.register(CountryName)
-admin.site.register(ProgramType)
-admin.site.register(Speciality)
-admin.site.register(Language)
 admin.site.register(Country)
-admin.site.register(CountryDescriptionCost)
 admin.site.register(CountryPhoto)
-admin.site.register(CountryInfo)
-admin.site.register(University)
-admin.site.register(UniversityInfo)
-admin.site.register(UniversityEvent)
-admin.site.register(UniversityEventInfo)
-admin.site.register(UniversityCost)
+
 admin.site.register(UniversityPhoto)
-admin.site.register(Share)

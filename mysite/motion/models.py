@@ -43,6 +43,7 @@ class ExamCard(models.Model):
 
 
 class ExamTheme(models.Model):
+    exam_card = models.ForeignKey(ExamCard, on_delete=models.CASCADE)
     theme = models.CharField(max_length=128)
     description = models.TextField()
 
@@ -138,15 +139,17 @@ class CountryPhoto(models.Model):
 
 
 # check how to get this page, change the logic if u need
+# check the country_name relationship, depends on user_flow
 class CountryInfo(models.Model):
-    country_name = models.ForeignKey(CountryName, on_delete=models.CASCADE)
+    country_name = models.ForeignKey(Country, on_delete=models.CASCADE)
     title = models.CharField(max_length=64)
     information = models.TextField()
 
 
+# check the location relationship, depends on user_flow
 class University(models.Model):
     title = models.CharField(max_length=64)
-    location = models.ForeignKey(CountryName, on_delete=models.CASCADE)
+    location = models.ForeignKey(Country, on_delete=models.CASCADE)
     foundation_date = models.DateField()
     program_type = models.ManyToManyField(ProgramType)
     speciality = models.ManyToManyField(Speciality)
@@ -154,21 +157,25 @@ class University(models.Model):
 
 
 class UniversityInfo(models.Model):
+    university = models.ForeignKey(University, on_delete=models.CASCADE)
     title = models.CharField(max_length=64)
     information = models.TextField()
 
 
 class UniversityEvent(models.Model):
+    university = models.ForeignKey(University, on_delete=models.CASCADE)
     title = models.CharField(max_length=64)
     information = models.TextField()
 
 
 class UniversityEventInfo(models.Model):
+    event = models.ForeignKey(UniversityEvent, on_delete=models.CASCADE)
     title = models.CharField(max_length=64)
     information = models.TextField()
 
 
 class UniversityCost(models.Model):
+    university = models.ForeignKey(University, on_delete=models.CASCADE)
     info = models.TextField()
 
 
