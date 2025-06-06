@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import *
-from modeltranslation.admin import TranslationAdmin
+from modeltranslation.admin import TranslationAdmin, TranslationInlineModelAdmin
 
 
 class GeneralMedia:
@@ -20,14 +20,14 @@ class HomeAdmin(TranslationAdmin, GeneralMedia):
     pass
 
 
+class InfoCardInline(TranslationInlineModelAdmin, admin.TabularInline, GeneralMedia):
+    model = InfoCard
+    extra = 1
+
+
 @admin.register(Info)
-class InfoAdmin(TranslationAdmin, GeneralMedia):
-    pass
-
-
-@admin.register(InfoCard)
-class InfoCardAdmin(TranslationAdmin, GeneralMedia):
-    pass
+class InfoAdmin(TranslationAdmin, admin.ModelAdmin, GeneralMedia):
+    inlines = [InfoCardInline]
 
 
 @admin.register(Exam)
@@ -35,19 +35,24 @@ class ExamAdmin(TranslationAdmin, GeneralMedia):
     pass
 
 
+class ExamThemeInline(TranslationInlineModelAdmin, admin.TabularInline, GeneralMedia):
+    model = ExamTheme
+    extra = 1
+
+
 @admin.register(ExamCard)
-class ExamCardAdmin(TranslationAdmin, GeneralMedia):
-    pass
+class ExamCardAdmin(TranslationAdmin, admin.ModelAdmin, GeneralMedia):
+    inlines = [ExamThemeInline]
 
 
-@admin.register(ExamTheme)
-class ExamThemeAdmin(TranslationAdmin, GeneralMedia):
-    pass
+class VideoItemInline(admin.TabularInline):
+    model = VideoItem
+    extra = 1
 
 
 @admin.register(Video)
 class VideoAdmin(TranslationAdmin, GeneralMedia):
-    pass
+    inlines = [VideoItemInline]
 
 
 @admin.register(ClientContact)
@@ -65,14 +70,14 @@ class AboutAdmin(TranslationAdmin, GeneralMedia):
     pass
 
 
+class PersonInline(TranslationInlineModelAdmin, admin.TabularInline, GeneralMedia):
+    model = Person
+    extra = 1
+
+
 @admin.register(Team)
-class TeamAdmin(TranslationAdmin, GeneralMedia):
-    pass
-
-
-@admin.register(Person)
-class PersonAdmin(TranslationAdmin, GeneralMedia):
-    pass
+class TeamAdmin(TranslationAdmin, admin.ModelAdmin, GeneralMedia):
+    inlines = [PersonInline]
 
 
 @admin.register(Study)
@@ -115,9 +120,14 @@ class CountryInfoAdmin(TranslationAdmin, GeneralMedia):
     pass
 
 
+class UniversityPhotoInline(admin.TabularInline):
+    model = UniversityPhoto
+    extra = 1
+
+
 @admin.register(University)
-class UniversityAdmin(TranslationAdmin, GeneralMedia):
-    pass
+class UniversityAdmin(TranslationAdmin, admin.ModelAdmin, GeneralMedia):
+    inlines = [UniversityPhotoInline]
 
 
 @admin.register(UniversityInfo)
@@ -145,9 +155,14 @@ class ShareAdmin(TranslationAdmin, GeneralMedia):
     pass
 
 
-admin.site.register(HomeContact)
-admin.site.register(VideoItem)
-admin.site.register(Country)
-admin.site.register(CountryPhoto)
+class CountryPhotoInline(admin.TabularInline):
+    model = CountryPhoto
+    extra = 1
 
-admin.site.register(UniversityPhoto)
+
+class CountryAdmin(admin.ModelAdmin):
+    inlines = [CountryPhotoInline]
+
+
+admin.site.register(HomeContact)
+admin.site.register(Country, CountryAdmin)

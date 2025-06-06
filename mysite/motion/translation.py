@@ -128,7 +128,7 @@ class UniversityEventInfoTranslationOptions(TranslationOptions):
 
 @register(UniversityCost)
 class UniversityCostTranslationOptions(TranslationOptions):
-    fields = ('info',)
+    fields = ('text', 'info')
 
 
 @register(Share)

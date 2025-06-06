@@ -176,6 +176,7 @@ class UniversityEventInfo(models.Model):
 
 class UniversityCost(models.Model):
     university = models.ForeignKey(University, on_delete=models.CASCADE)
+    text = models.TextField()
     info = models.TextField()
 
 
