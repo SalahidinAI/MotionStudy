@@ -5,71 +5,84 @@ from .models import *
 class HomeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Home
-        fields = '__all__'
+        fields = ['id', 'label', 'title', 'description', 'image1', 'image2', 'image3', 'image4']
 
 
 class HomeContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = HomeContact
-        fields = '__all__'
-
-
-class InfoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Info
-        fields = '__all__'
+        fields = ['name', 'phone_number']
 
 
 class InfoCardSerializer(serializers.ModelSerializer):
     class Meta:
         model = InfoCard
-        fields = '__all__'
+        fields = ['id', 'title', 'description']
 
 
-class ExamSerializer(serializers.ModelSerializer):
+class InfoSerializer(serializers.ModelSerializer):
+    info_cards = InfoCardSerializer(many=True, read_only=True)
+
     class Meta:
-        model = Exam
-        fields = '__all__'
-
-
-class ExamCardSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ExamCard
-        fields = '__all__'
+        model = Info
+        fields = ['id', 'title', 'description', 'image', 'info_cards']
 
 
 class ExamThemeSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExamTheme
-        fields = '__all__'
+        fields = ['id', 'theme', 'description']
 
 
-class VideoSerializer(serializers.ModelSerializer):
+class ExamCardSerializer(serializers.ModelSerializer):
+    exam_card_themes = ExamThemeSerializer(many=True, read_only=True)
+
     class Meta:
-        model = Video
-        fields = '__all__'
+        model = ExamCard
+        fields = ['id', 'image1', 'image2', 'exam_type', 'title', 'exam_card_themes']
+
+
+class ExamSerializer(serializers.ModelSerializer):
+    exam_cards = ExamCardSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Exam
+        fields = ['id', 'title', 'description', 'exam_cards']
 
 
 class VideoItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = VideoItem
-        fields = '__all__'
+        fields = ['id', 'videos']
 
 
-class ClientContactSerializer(serializers.ModelSerializer):
+class VideoSerializer(serializers.ModelSerializer):
+    students_videos = VideoItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Video
+        fields = ['id', 'title', 'students_videos']
+
+
+class ClientContactListSerializer(serializers.ModelSerializer):
     class Meta:
         model = ClientContact
-        fields = '__all__'
+        fields = ['id', 'title']
 
+
+class ClientContactCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ClientContact
+        fields = ['first_name', 'last_name', 'phone', 'email', 'organization', 'text']
 
 
 class MotionContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = MotionContact
-        fields = '__all__'
+        fields = ['id', 'title', 'phone', 'email']
 
 
-
+# continue here
 class AboutSerializer(serializers.ModelSerializer):
     class Meta:
         model = About

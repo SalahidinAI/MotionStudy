@@ -33,7 +33,7 @@ class Info(models.Model):
 
 
 class InfoCard(models.Model):
-    info = models.ForeignKey(Info, on_delete=models.CASCADE)
+    info = models.ForeignKey(Info, on_delete=models.CASCADE, related_name='info_cards')
     title = models.CharField(max_length=64)
     description = models.TextField()
 
@@ -50,7 +50,7 @@ class Exam(models.Model):
 
 
 class ExamCard(models.Model):
-    exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE, related_name='exam_cards')
     image1 = models.ImageField(upload_to='exam_images/')
     image2 = models.ImageField(upload_to='exam_images/')
     exam_type = models.CharField(max_length=64)
@@ -61,7 +61,7 @@ class ExamCard(models.Model):
 
 
 class ExamTheme(models.Model):
-    exam_card = models.ForeignKey(ExamCard, on_delete=models.CASCADE)
+    exam_card = models.ForeignKey(ExamCard, on_delete=models.CASCADE, related_name='exam_card_themes')
     theme = models.CharField(max_length=128)
     description = models.TextField()
 
@@ -77,7 +77,7 @@ class Video(models.Model):
 
 
 class VideoItem(models.Model):
-    video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name='students_videos')
     videos = models.FileField(upload_to='student_videos/')
 
 
@@ -103,6 +103,7 @@ class MotionContact(models.Model):
         return f'{self.title}'
 
 
+# continue here
 class About(models.Model):
     image = models.ImageField(upload_to='about_images/')
     label = models.CharField(max_length=16)
