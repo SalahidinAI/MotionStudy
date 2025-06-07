@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'motion',
-    'phonenumber_field'
+    'phonenumber_field',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
