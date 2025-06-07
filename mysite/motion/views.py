@@ -26,6 +26,11 @@ class ExamAPIView(generics.ListAPIView):
     serializer_class = ExamSerializer
 
 
+class ExamDetailAPIView(generics.RetrieveAPIView):
+    queryset = ExamCard.objects.all()
+    serializer_class = ExamDetailSerializer
+
+
 class VideoAPIView(generics.ListAPIView):
     queryset = Video.objects.all()
     serializer_class = VideoSerializer
@@ -46,35 +51,36 @@ class MotionContactAPIView(generics.ListAPIView):
     serializer_class = MotionContactSerializer
 
 
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
+class AboutAPIView(generics.ListAPIView):
+    queryset = About.objects.all()
+    serializer_class = AboutSerializer
+
+
+class TeamAPIView(generics.ListAPIView):
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
+
+
+class StudyAPIView(generics.ListAPIView):
+    queryset = Study.objects.all()
+    serializer_class = StudySerializer
+
+
+class CountryPageAPIView(generics.ListAPIView):
+    queryset = CountryPage.objects.all()
+    serializer_class = CountryPageSerializer
+
+
+class CountryDetailAPIView(generics.RetrieveAPIView):
+    queryset = Country.objects.all()
+    serializer_class = CountryDetailSerializer
+
+
+class CountryInfoAPIView(generics.RetrieveAPIView):
+    queryset = Country.objects.all()
+    serializer_class = CountryInfoDetailSerializer
+
+
 # class APIView(generics.ListAPIView):
 #     queryset = .objects.all()
 #     serializer_class = Serializer

@@ -39,7 +39,7 @@ class ExamCardSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ExamCard
-        fields = ['id', 'image1', 'image2', 'exam_type', 'title', 'exam_card_themes']
+        fields = ['id', 'image1', 'exam_type', 'title', 'exam_card_themes']
 
 
 class ExamSerializer(serializers.ModelSerializer):
@@ -48,6 +48,14 @@ class ExamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Exam
         fields = ['id', 'title', 'description', 'exam_cards']
+
+
+class ExamDetailSerializer(serializers.ModelSerializer):
+    exam_themes = ExamThemeSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = ExamCard
+        fields = ['id', 'title', 'image2', 'exam_themes']
 
 
 class VideoItemSerializer(serializers.ModelSerializer):
@@ -82,55 +90,64 @@ class MotionContactSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'phone', 'email']
 
 
-# continue here
 class AboutSerializer(serializers.ModelSerializer):
     class Meta:
         model = About
-        fields = '__all__'
-
-
-
-class TeamSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Team
-        fields = '__all__'
+        fields = ['id', 'image', 'label', 'title', 'text', 'description']
 
 
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields = '__all__'
+        fields = ['id', 'profile_image', 'name', 'info']
 
+
+class TeamSerializer(serializers.ModelSerializer):
+    team_members = PersonSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Team
+        fields = ['id', 'title', 'team_members']
 
 
 class StudySerializer(serializers.ModelSerializer):
     class Meta:
         model = Study
-        fields = '__all__'
-
-
-class CountryPageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CountryPage
-        fields = '__all__'
+        fields = ['id', 'title', 'study_image', 'description', 'bonus']
 
 
 class CountryNameSerializer(serializers.ModelSerializer):
     class Meta:
         model = CountryName
-        fields = '__all__'
+        fields = ['id', 'country_name']
+
+
+class CountryListSerializer(serializers.ModelSerializer):
+    location =  CountryNameSerializer()
+
+    class Meta:
+        model = Country
+        fields = ['id', 'flag1', 'location']
+
+
+class CountryPageSerializer(serializers.ModelSerializer):
+    countries = CountryListSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = CountryPage
+        fields = ['id', 'title', 'countries']
 
 
 class ProgramTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProgramType
-        fields = '__all__'
+        fields = ['id', 'program']
 
 
 class SpecialitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Speciality
-        fields = '__all__'
+        fields = ['id', 'speciality_name']
 
 
 class LanguageSerializer(serializers.ModelSerializer):
@@ -139,28 +156,44 @@ class LanguageSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class CountrySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Country
-        fields = '__all__'
-
-
 class CountryDescriptionCostSerializer(serializers.ModelSerializer):
     class Meta:
         model = CountryDescriptionCost
-        fields = '__all__'
+        fields = ['id', 'description']
 
 
 class CountryPhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = CountryPhoto
-        fields = '__all__'
+        fields = ['id', 'country_photos']
+
+
+class CountryDetailSerializer(serializers.ModelSerializer):
+    location = CountryNameSerializer(read_only=True)
+    program_type = ProgramTypeSerializer(many=True, read_only=True)
+    speciality = SpecialitySerializer(many=True, read_only=True)
+    language = LanguageSerializer(many=True, read_only=True)
+    country_descriptions = CountryDescriptionCostSerializer(many=True, read_only=True)
+    country_photos = CountryPhotoSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Country
+        fields = ['id', 'flag2', 'location', 'program_type', 'speciality', 'language',
+                  'country_descriptions', 'country_photos']
 
 
 class CountryInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = CountryInfo
-        fields = '__all__'
+        fields = ['id', 'title', 'information']
+
+
+class CountryInfoDetailSerializer(serializers.ModelSerializer):
+    country_info = CountryInfoSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Country
+        fields = ['id', 'country_info']
 
 
 class UniversitySerializer(serializers.ModelSerializer):

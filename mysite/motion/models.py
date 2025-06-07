@@ -61,7 +61,7 @@ class ExamCard(models.Model):
 
 
 class ExamTheme(models.Model):
-    exam_card = models.ForeignKey(ExamCard, on_delete=models.CASCADE, related_name='exam_card_themes')
+    exam_card = models.ForeignKey(ExamCard, on_delete=models.CASCADE, related_name='exam_themes')
     theme = models.CharField(max_length=128)
     description = models.TextField()
 
@@ -103,7 +103,6 @@ class MotionContact(models.Model):
         return f'{self.title}'
 
 
-# continue here
 class About(models.Model):
     image = models.ImageField(upload_to='about_images/')
     label = models.CharField(max_length=16)
@@ -123,7 +122,7 @@ class Team(models.Model):
 
 
 class Person(models.Model):
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_members')
     name = models.CharField(max_length=64)
     info = models.CharField(max_length=128)
     profile_image = models.ImageField(upload_to='person_images/')
@@ -143,7 +142,7 @@ class Study(models.Model):
 
 
 class CountryPage(models.Model):
-    title = models.CharField(max_length=16)
+    title = models.CharField(max_length=32)
 
     def __str__(self):
         return f'{self.title}'
@@ -164,7 +163,7 @@ class ProgramType(models.Model):
 
 
 class Speciality(models.Model):
-    speciality_name = models.CharField(max_length=32)
+    speciality_name = models.CharField(max_length=64)
 
     def __str__(self):
         return f'{self.speciality_name}'
@@ -178,9 +177,10 @@ class Language(models.Model):
 
 
 class Country(models.Model):
-    country_page = models.ForeignKey(CountryPage, on_delete=models.CASCADE)
-    flag = models.ImageField(upload_to='country_flags/')
-    location = models.ForeignKey(CountryName, on_delete=models.CASCADE)
+    country_page = models.ForeignKey(CountryPage, on_delete=models.CASCADE, related_name='countries')
+    flag1 = models.ImageField(upload_to='country_flags/')
+    flag2 = models.ImageField(upload_to='country_flags/')
+    location = models.ForeignKey(CountryName, on_delete=models.CASCADE, related_name='countries')
     program_type = models.ManyToManyField(ProgramType)
     speciality = models.ManyToManyField(Speciality)
     language = models.ManyToManyField(Language)
@@ -190,7 +190,7 @@ class Country(models.Model):
 
 
 class CountryDescriptionCost(models.Model):
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='country_descriptions')
     description = models.TextField()
 
     def __str__(self):
@@ -198,7 +198,7 @@ class CountryDescriptionCost(models.Model):
 
 
 class CountryPhoto(models.Model):
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='country_photos')
     country_photos = models.ImageField(upload_to='country_photos/')
 
     def __str__(self):
@@ -208,7 +208,7 @@ class CountryPhoto(models.Model):
 # check how to get this page, change the logic if u need
 # check the country_name relationship, depends on user_flow
 class CountryInfo(models.Model):
-    country_name = models.ForeignKey(Country, on_delete=models.CASCADE)
+    country_name = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='country_info')
     title = models.CharField(max_length=64)
     information = models.TextField()
 

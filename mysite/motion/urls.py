@@ -10,7 +10,14 @@ urlpatterns = [
     path('home_videos/', VideoAPIView.as_view(), name='home_videos_list'),
     path('client_contact/', ClientContactAPIView.as_view(), name='client_contact_list'),
     path('motion_contact/', MotionContactAPIView.as_view(), name='motion_contact_list'),
+    path('exam/<int:pk>/', ExamDetailAPIView.as_view(), name='exam_detail'),
 
-    # continue here
-    # path(add ci/cd and deploy)
+    path('about/', AboutAPIView.as_view(), name='about_list'),
+    path('team/', TeamAPIView.as_view(), name='team_list'),
+    path('study/', StudyAPIView.as_view(), name='study_list'),
+    path('country/', CountryPageAPIView.as_view(), name='country_list'),
+    path('country/<int:pk>/', CountryDetailAPIView.as_view(), name='country_detail'),
+    path('country_info/<int:pk>/', CountryInfoAPIView.as_view(), name='country_info_detail'),
+
+    # add ci/cd and deploy
 ]
