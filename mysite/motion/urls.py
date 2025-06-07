@@ -12,5 +12,5 @@ urlpatterns = [
     path('motion_contact/', MotionContactAPIView.as_view(), name='motion_contact_list'),
 
     # continue here
-    # path()
+    # path(add ci/cd and deploy)
 ]
