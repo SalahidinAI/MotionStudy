@@ -81,96 +81,38 @@ class CountryInfoAPIView(generics.RetrieveAPIView):
     serializer_class = CountryInfoDetailSerializer
 
 
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
-#
-#
-# class APIView(generics.ListAPIView):
-#     queryset = .objects.all()
-#     serializer_class = Serializer
+class UniversityListAPIView(generics.ListAPIView):
+    queryset = University.objects.all()
+    serializer_class = UniversitySerializer
+
+
+class UniversityInfoAPIView(generics.ListAPIView):
+    queryset = UniversityInfo.objects.all()
+    serializer_class = UniversityInfoSerializer
+
+
+class UniversityEventAPIView(generics.ListAPIView):
+    queryset = UniversityEvent.objects.all()
+    serializer_class = UniversityEventSerializer
+
+
+class UniversityEventInfoAPIView(generics.RetrieveAPIView):
+    queryset = UniversityEventInfo.objects.all()
+    serializer_class = UniversityEventInfoSerializer
+
+
+class UniversityCostAPIView(generics.RetrieveAPIView):
+    queryset = UniversityCost.objects.all()
+    serializer_class = UniversityCostSerializer
+
+
+class UniversityPhotoAPIView(generics.RetrieveAPIView):
+    queryset = UniversityPhoto.objects.all()
+    serializer_class = UniversityPhotoSerializer
+
+
+class ShareAPIView(generics.ListAPIView):
+    queryset = Share.objects.all()
+    serializer_class = ShareSerializer
+
+

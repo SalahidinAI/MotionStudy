@@ -123,7 +123,7 @@ class CountryNameSerializer(serializers.ModelSerializer):
 
 
 class CountryListSerializer(serializers.ModelSerializer):
-    location =  CountryNameSerializer()
+    location = CountryNameSerializer()
 
     class Meta:
         model = Country
@@ -196,40 +196,56 @@ class CountryInfoDetailSerializer(serializers.ModelSerializer):
         fields = ['id', 'country_info']
 
 
+class CountrySimpleSerializer(serializers.ModelSerializer):
+    location = CountryNameSerializer()
+    class Meta:
+        model = Country
+        fields = ['location']
+
+
 class UniversitySerializer(serializers.ModelSerializer):
+    location = CountrySimpleSerializer()
+    speciality = SpecialitySerializer(many=True)
+    language = LanguageSerializer(many=True)
+    program_type = ProgramTypeSerializer(many=True)
+
     class Meta:
         model = University
         fields = '__all__'
 
 
 class UniversityInfoSerializer(serializers.ModelSerializer):
+    university = UniversitySerializer()
     class Meta:
         model = UniversityInfo
-        fields = '__all__'
+        fields = ['id', 'university', 'title', 'information']
 
 
 class UniversityEventSerializer(serializers.ModelSerializer):
+    university = UniversitySerializer()
+
     class Meta:
         model = UniversityEvent
-        fields = '__all__'
+        fields = ['id', 'university', 'title', 'information']
 
 
 class UniversityEventInfoSerializer(serializers.ModelSerializer):
+    event = UniversityEventSerializer()
     class Meta:
         model = UniversityEventInfo
-        fields = '__all__'
+        fields = ['id', 'event', 'title', 'information']
 
 
 class UniversityCostSerializer(serializers.ModelSerializer):
     class Meta:
         model = UniversityCost
-        fields = '__all__'
+        fields = ['id', 'university', 'text', 'info']
 
 
 class UniversityPhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = UniversityPhoto
-        fields = '__all__'
+        fields = ['university', 'university_photos']
 
 
 class ShareSerializer(serializers.ModelSerializer):
