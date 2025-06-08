@@ -219,6 +219,7 @@ class CountryInfo(models.Model):
 # check the location relationship, depends on user_flow
 class University(models.Model):
     title = models.CharField(max_length=64)
+    photo = models.ImageField(upload_to='university_photo/')
     location = models.ForeignKey(Country, on_delete=models.CASCADE)
     foundation_date = models.DateField()
     program_type = models.ManyToManyField(ProgramType)
