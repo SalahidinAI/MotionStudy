@@ -78,7 +78,7 @@ class Video(models.Model):
 
 class VideoItem(models.Model):
     video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name='students_videos')
-    videos = models.FileField(upload_to='student_videos/')
+    videos = models.URLField()
 
 
 class ClientContact(models.Model):
