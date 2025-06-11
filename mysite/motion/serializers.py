@@ -35,11 +35,11 @@ class ExamThemeSerializer(serializers.ModelSerializer):
 
 
 class ExamCardSerializer(serializers.ModelSerializer):
-    exam_card_themes = ExamThemeSerializer(many=True, read_only=True)
+    exam_themes = ExamThemeSerializer(many=True, read_only=True)
 
     class Meta:
         model = ExamCard
-        fields = ['id', 'image1', 'exam_type', 'title', 'exam_card_themes']
+        fields = ['id', 'image1', 'exam_type', 'title', 'exam_themes']
 
 
 class ExamSerializer(serializers.ModelSerializer):
