@@ -106,7 +106,7 @@ class UniversityCostAPIView(generics.RetrieveAPIView):
     serializer_class = UniversityCostSerializer
 
 
-class UniversityPhotoAPIView(generics.RetrieveAPIView):
+class UniversityPhotoAPIView(generics.ListAPIView):
     queryset = UniversityPhoto.objects.all()
     serializer_class = UniversityPhotoSerializer
 
