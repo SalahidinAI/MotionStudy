@@ -4,6 +4,8 @@ from .models import *
 from .serializers import *
 from rest_framework import filters
 from rest_framework.permissions import SAFE_METHODS
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
 
 
 class HomeAPIView(generics.ListAPIView):
@@ -84,6 +86,9 @@ class CountryInfoAPIView(generics.RetrieveAPIView):
 class UniversityListAPIView(generics.ListAPIView):
     queryset = University.objects.all()
     serializer_class = UniversitySerializer
+    filter_backends = [SearchFilter]
+    filterset_fields = ['location']
+    search_fields = ['title']
 
 
 class UniversityInfoAPIView(generics.ListAPIView):

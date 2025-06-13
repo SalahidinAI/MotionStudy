@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'drf_yasg',
     'corsheaders',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -169,3 +170,10 @@ CORS_ALLOW_HEADERS = [
     "authorization",
     "x-requested-with",
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+    ]
+}
