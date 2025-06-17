@@ -153,7 +153,7 @@ class SpecialitySerializer(serializers.ModelSerializer):
 class LanguageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Language
-        fields = '__all__'
+        fields = ['id', 'language']
 
 
 class CountryDescriptionCostSerializer(serializers.ModelSerializer):
@@ -200,52 +200,73 @@ class CountrySimpleSerializer(serializers.ModelSerializer):
     location = CountryNameSerializer()
     class Meta:
         model = Country
-        fields = ['location']
+        fields = ['id', 'location']
 
 
-class UniversitySerializer(serializers.ModelSerializer):
+class UniversityListSerializer(serializers.ModelSerializer):
     location = CountrySimpleSerializer()
-    speciality = SpecialitySerializer(many=True)
-    language = LanguageSerializer(many=True)
-    program_type = ProgramTypeSerializer(many=True)
 
     class Meta:
         model = University
-        fields = '__all__'
+        fields = ['id', 'photo', 'title', 'location']
 
 
-class UniversityInfoSerializer(serializers.ModelSerializer):
-    university = UniversitySerializer()
-    class Meta:
-        model = UniversityInfo
-        fields = ['id', 'university', 'title', 'information']
+class UniversityDetailSerializer(serializers.ModelSerializer):
+    location = CountrySimpleSerializer()
+    program_type = ProgramTypeSerializer(many=True, read_only=True)
+    speciality = SpecialitySerializer(many=True, read_only=True)
+    language = LanguageSerializer(many=True, read_only=True)
 
-
-class UniversityEventSerializer(serializers.ModelSerializer):
-    university = UniversitySerializer()
 
     class Meta:
-        model = UniversityEvent
-        fields = ['id', 'university', 'title', 'information']
+        model = University
+        fields = ['id', 'title', 'photo', 'foundation_date', 'location',
+                  'program_type', 'speciality', 'language']
 
 
-class UniversityEventInfoSerializer(serializers.ModelSerializer):
-    event = UniversityEventSerializer()
-    class Meta:
-        model = UniversityEventInfo
-        fields = ['id', 'event', 'title', 'information']
-
-
-class UniversityCostSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UniversityCost
-        fields = ['id', 'university', 'text', 'info']
-
-
-class UniversityPhotoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UniversityPhoto
-        fields = ['university', 'university_photos']
+# class UniversitySerializer(serializers.ModelSerializer):
+#     location = CountrySimpleSerializer()
+#     speciality = SpecialitySerializer(many=True)
+#     language = LanguageSerializer(many=True)
+#     program_type = ProgramTypeSerializer(many=True)
+#
+#     class Meta:
+#         model = University
+#         fields = '__all__'
+#
+#
+# class UniversityInfoSerializer(serializers.ModelSerializer):
+#     university = UniversitySerializer()
+#     class Meta:
+#         model = UniversityInfo
+#         fields = ['id', 'university', 'title', 'information']
+#
+#
+# class UniversityEventSerializer(serializers.ModelSerializer):
+#     university = UniversitySerializer()
+#
+#     class Meta:
+#         model = UniversityEvent
+#         fields = ['id', 'university', 'title', 'information']
+#
+#
+# class UniversityEventInfoSerializer(serializers.ModelSerializer):
+#     event = UniversityEventSerializer()
+#     class Meta:
+#         model = UniversityEventInfo
+#         fields = ['id', 'event', 'title', 'information']
+#
+#
+# class UniversityCostSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = UniversityCost
+#         fields = ['id', 'university', 'text', 'info']
+#
+#
+# class UniversityPhotoSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = UniversityPhoto
+#         fields = ['university', 'university_photos']
 
 
 class ShareSerializer(serializers.ModelSerializer):

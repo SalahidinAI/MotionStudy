@@ -85,35 +85,48 @@ class CountryInfoAPIView(generics.RetrieveAPIView):
 
 class UniversityListAPIView(generics.ListAPIView):
     queryset = University.objects.all()
-    serializer_class = UniversitySerializer
-    filter_backends = [SearchFilter]
+    serializer_class = UniversityListSerializer
+    filter_backends = [SearchFilter, DjangoFilterBackend]
     filterset_fields = ['location']
-    search_fields = ['title']
+    search_fields = ['location__location__country_name']
 
 
-class UniversityInfoAPIView(generics.ListAPIView):
-    queryset = UniversityInfo.objects.all()
-    serializer_class = UniversityInfoSerializer
+class UniversityDetailAPIView(generics.RetrieveAPIView):
+    queryset = University.objects.all()
+    serializer_class = UniversityDetailSerializer
 
 
-class UniversityEventAPIView(generics.ListAPIView):
-    queryset = UniversityEvent.objects.all()
-    serializer_class = UniversityEventSerializer
-
-
-class UniversityEventInfoAPIView(generics.RetrieveAPIView):
-    queryset = UniversityEventInfo.objects.all()
-    serializer_class = UniversityEventInfoSerializer
-
-
-class UniversityCostAPIView(generics.RetrieveAPIView):
-    queryset = UniversityCost.objects.all()
-    serializer_class = UniversityCostSerializer
-
-
-class UniversityPhotoAPIView(generics.ListAPIView):
-    queryset = UniversityPhoto.objects.all()
-    serializer_class = UniversityPhotoSerializer
+# class UniversityListAPIView(generics.ListAPIView):
+#     queryset = University.objects.all()
+#     serializer_class = UniversitySerializer
+#     filter_backends = [SearchFilter]
+#     filterset_fields = ['location']
+#     search_fields = ['title']
+#
+#
+# class UniversityInfoAPIView(generics.ListAPIView):
+#     queryset = UniversityInfo.objects.all()
+#     serializer_class = UniversityInfoSerializer
+#
+#
+# class UniversityEventAPIView(generics.ListAPIView):
+#     queryset = UniversityEvent.objects.all()
+#     serializer_class = UniversityEventSerializer
+#
+#
+# class UniversityEventInfoAPIView(generics.RetrieveAPIView):
+#     queryset = UniversityEventInfo.objects.all()
+#     serializer_class = UniversityEventInfoSerializer
+#
+#
+# class UniversityCostAPIView(generics.RetrieveAPIView):
+#     queryset = UniversityCost.objects.all()
+#     serializer_class = UniversityCostSerializer
+#
+#
+# class UniversityPhotoAPIView(generics.ListAPIView):
+#     queryset = UniversityPhoto.objects.all()
+#     serializer_class = UniversityPhotoSerializer
 
 
 class ShareAPIView(generics.ListAPIView):

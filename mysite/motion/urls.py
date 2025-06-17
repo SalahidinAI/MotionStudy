@@ -19,13 +19,18 @@ urlpatterns = [
     path('country/<int:pk>/', CountryDetailAPIView.as_view(), name='country_detail'),
     path('country_info/<int:pk>/', CountryInfoAPIView.as_view(), name='country_info_detail'),
 
-    path('university/', UniversityListAPIView.as_view(), name='university'),
-    path('university_info/', UniversityInfoAPIView.as_view(), name='university_info'),
-    path('university_event/', UniversityEventAPIView.as_view(), name='university_event'),
+    path('university/', UniversityListAPIView.as_view(), name='university_list'),
+    path('university/<int:pk>/', UniversityDetailAPIView.as_view(), name='university_detail'),
 
-    path('university_event_info/<int:pk>/', UniversityEventInfoAPIView.as_view(), name='university_event_info'),
-    path('university_cost/', UniversityCostAPIView.as_view(), name='university_cost'),
-    path('university_photo/', UniversityPhotoAPIView.as_view(), name='university_photo'),
+    #
+
+    # path('university/', UniversityListAPIView.as_view(), name='university'),
+    # path('university_info/', UniversityInfoAPIView.as_view(), name='university_info'),
+    # path('university_event/', UniversityEventAPIView.as_view(), name='university_event'),
+    #
+    # path('university_event_info/<int:pk>/', UniversityEventInfoAPIView.as_view(), name='university_event_info'),
+    # path('university_cost/', UniversityCostAPIView.as_view(), name='university_cost'),
+    # path('university_photo/', UniversityPhotoAPIView.as_view(), name='university_photo'),
 
     # add ci/cd and deploy
 ]
