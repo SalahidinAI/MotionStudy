@@ -249,7 +249,7 @@ class UniversityEvent(models.Model):
 
 
 class UniversityEventInfo(models.Model):
-    event = models.ForeignKey(UniversityEvent, on_delete=models.CASCADE)
+    event = models.ForeignKey(UniversityEvent, on_delete=models.CASCADE, related_name='event_info')
     title = models.CharField(max_length=64)
     information = models.TextField()
 

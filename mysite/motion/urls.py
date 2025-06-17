@@ -21,16 +21,8 @@ urlpatterns = [
 
     path('university/', UniversityListAPIView.as_view(), name='university_list'),
     path('university/<int:pk>/', UniversityDetailAPIView.as_view(), name='university_detail'),
-
-    #
-
-    # path('university/', UniversityListAPIView.as_view(), name='university'),
-    # path('university_info/', UniversityInfoAPIView.as_view(), name='university_info'),
-    # path('university_event/', UniversityEventAPIView.as_view(), name='university_event'),
-    #
-    # path('university_event_info/<int:pk>/', UniversityEventInfoAPIView.as_view(), name='university_event_info'),
-    # path('university_cost/', UniversityCostAPIView.as_view(), name='university_cost'),
-    # path('university_photo/', UniversityPhotoAPIView.as_view(), name='university_photo'),
-
-    # add ci/cd and deploy
+    path('university/description/', UniversityDescriptionAPIView.as_view(), name='university_description_detail'),
+    path('university/event/', UniversityEventAPIView.as_view(), name='university_event_detail'),
+    path('university/cost/', UniversityCostAPIView.as_view(), name='university_cost_detail'),
+    path('university/photos/', UniversityPhotoAPIView.as_view(), name='university_photos_detail'),
 ]
