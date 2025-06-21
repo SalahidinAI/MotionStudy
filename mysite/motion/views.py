@@ -93,10 +93,7 @@ class UniversityListAPIView(generics.ListAPIView):
         'location__location__country_name_ru',
         'location__location__country_name_ky',
     ]
-    # search_fields = [
-    #     'location__location__country_name',
-    # ]
-    filterset_class = UniversityFilter  # если используешь фильтрацию тоже
+    filterset_class = UniversityFilter
 
 
 class UniversityDetailAPIView(generics.RetrieveAPIView):
