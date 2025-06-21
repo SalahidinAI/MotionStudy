@@ -6,6 +6,7 @@ from rest_framework import filters
 from rest_framework.permissions import SAFE_METHODS
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
+from .filters import UniversityFilter
 
 
 class HomeAPIView(generics.ListAPIView):
@@ -87,8 +88,15 @@ class UniversityListAPIView(generics.ListAPIView):
     queryset = University.objects.all()
     serializer_class = UniversityListSerializer
     filter_backends = [SearchFilter, DjangoFilterBackend]
-    filterset_fields = ['location']
-    search_fields = ['location__location__country_name']
+    search_fields = [
+        'location__location__country_name_en',
+        'location__location__country_name_ru',
+        'location__location__country_name_ky',
+    ]
+    # search_fields = [
+    #     'location__location__country_name',
+    # ]
+    filterset_class = UniversityFilter  # если используешь фильтрацию тоже
 
 
 class UniversityDetailAPIView(generics.RetrieveAPIView):
